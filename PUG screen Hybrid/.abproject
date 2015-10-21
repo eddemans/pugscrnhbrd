@@ -1,0 +1,48 @@
+{
+  "ProjectName": "PUG screen Hybrid",
+  "ProjectGuid": "5090ae91-dda4-4f0e-a156-0332e33212f3",
+  "projectVersion": 1,
+  "AppIdentifier": "com.telerik.PUGscreenHybrid",
+  "DisplayName": "PUG screen Hybrid",
+  "Author": "",
+  "Description": "PUG screen Hybrid",
+  "BundleVersion": "1.0",
+  "AndroidVersionCode": "1",
+  "iOSDeviceFamily": [
+    "1",
+    "2"
+  ],
+  "iOSBackgroundMode": [],
+  "ProjectTypeGuids": "{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}",
+  "FrameworkVersion": "3.7.0",
+  "AndroidPermissions": [
+    "android.permission.INTERNET"
+  ],
+  "DeviceOrientations": [
+    "Portrait",
+    "Landscape"
+  ],
+  "AndroidHardwareAcceleration": "false",
+  "iOSStatusBarStyle": "Default",
+  "Framework": "Cordova",
+  "WP8TileTitle": "",
+  "WP8Publisher": "",
+  "WP8Capabilities": [
+    "ID_CAP_NETWORKING",
+    "ID_CAP_WEBBROWSERCOMPONENT"
+  ],
+  "WP8Requirements": [],
+  "WP8PublisherID": "{e4bae78b-c1d1-41db-b744-2fb8e3ae1f37}",
+  "WP8ProductID": "{4d866253-239a-472d-a19f-906d0d67250d}",
+  "WPSdk": "8.0",
+  "WP8PackageIdentityName": "1234Telerik.PUGscreenHybrid",
+  "WP8WindowsPublisherName": "CN=Telerik",
+  "WP8SupportedResolutions": [
+    "ID_RESOLUTION_WVGA",
+    "ID_RESOLUTION_WXGA",
+    "ID_RESOLUTION_HD720P"
+  ],
+  "CorePlugins": [
+    "org.apache.cordova.network-information"
+  ]
+}
