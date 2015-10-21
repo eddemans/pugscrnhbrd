@@ -1,0 +1,14 @@
+<div data-role="view" data-title="Item" data-layout="main" data-model="app.dataListViewItem" data-show="app.dataListViewItem.onShow" data-after-show="app.dataListViewItem.afterShow">
+    <!-- START_CUSTOM_CODE_dataListViewItem -->
+    <!-- END_CUSTOM_CODE_dataListViewItem -->
+    <ul data-role="listview" data-style="inset" data-template="dataListViewItemModelTemplate" data-bind="{ source: dataListViewItemModel.dataSource}" data-pull-to-refresh="false" data-endless-scroll="false">
+    </ul>
+    <!-- START_CUSTOM_CODE_dataListViewItemModel -->
+    <!-- END_CUSTOM_CODE_dataListViewItemModel -->
+    <script type="text/x-kendo-template" id="dataListViewItemModelTemplate">
+        <div class="image-with-text">
+            <h3>#: data['ItemName'] #</h3>
+
+        </div>
+    </script>
+</div>

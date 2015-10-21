@@ -1,0 +1,14 @@
+<div data-role="view" data-title="Order" data-layout="main" data-model="app.dataListViewOrd" data-show="app.dataListViewOrd.onShow" data-after-show="app.dataListViewOrd.afterShow">
+    <!-- START_CUSTOM_CODE_dataListViewOrd -->
+    <!-- END_CUSTOM_CODE_dataListViewOrd -->
+    <ul data-role="listview" data-style="inset" data-template="dataListViewOrdModelTemplate" data-bind="{ source: dataListViewOrdModel.dataSource}" data-pull-to-refresh="false" data-endless-scroll="false">
+    </ul>
+    <!-- START_CUSTOM_CODE_dataListViewOrdModel -->
+    <!-- END_CUSTOM_CODE_dataListViewOrdModel -->
+    <script type="text/x-kendo-template" id="dataListViewOrdModelTemplate">
+        <div class="image-with-text">
+            <h3>#: data['Ordernum'] #</h3>
+            <p>#: data['CustNum'] #</p>
+        </div>
+    </script>
+</div>
