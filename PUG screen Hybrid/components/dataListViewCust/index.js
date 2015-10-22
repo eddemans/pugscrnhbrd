@@ -24,6 +24,10 @@ app.dataListViewCust = kendo.observable({
                             field: 'Name',
                             defaultValue: ''
                         },
+                        'SalesRep': {
+                            field: 'SalesRep',
+                            defaultValue: ''
+                        },
                     }
                 }
             },
@@ -34,7 +38,20 @@ app.dataListViewCust = kendo.observable({
         dataListViewCustModel = kendo.observable({
             dataSource: dataSource,
             dataSourceOptions: dataSourceOptions,
-            jsdoOptions: jsdoOptions
+            jsdoOptions: jsdoOptions,
+            itemClick: function(e) {
+                app.mobileApp.navigate('#components/dataListViewCust/details.html?uid=' + e.dataItem.uid);
+            },
+            detailsShow: function(e) {
+                var item = e.view.params.uid,
+                    dataSource = dataListViewCustModel.get('dataSource'),
+                    itemModel = dataSource.getByUid(item);
+                if (!itemModel.Name) {
+                    itemModel.Name = String.fromCharCode(160);
+                }
+                dataListViewCustModel.set('currentItem', itemModel);
+            },
+            currentItem: null
         });
 
     parent.set('dataListViewCustModel', dataListViewCustModel);

@@ -20,8 +20,12 @@
           "collection": "Customer",
           "iconField": false,
           "headerField": "Name",
-          "masterDetails": false,
-          "pullToRefresh": false,
+          "subHeaderField": "SalesRep",
+          "masterDetails": true,
+          "detailHeaderField": "Name",
+          "detailSubHeaderField": "EmailAddress",
+          "detailDescriptionField": "Comments",
+          "pullToRefresh": true,
           "endlessScroll": false
         }
       ],
@@ -40,8 +44,11 @@
           "collection": "Item",
           "iconField": false,
           "headerField": "ItemName",
-          "masterDetails": false,
-          "pullToRefresh": false,
+          "filterField": "ItemName",
+          "masterDetails": true,
+          "detailHeaderField": "ItemName",
+          "detailDescriptionField": "CatDescription",
+          "pullToRefresh": true,
           "endlessScroll": false
         }
       ],
@@ -69,6 +76,28 @@
       "title": "Order",
       "addToNavigation": true,
       "icon": "cart"
+    },
+    {
+      "type": "kendo-ui-mobile:view",
+      "name": "formViewCust",
+      "components": [
+        {
+          "type": "kendo-ui-mobile:form",
+          "components": [
+            {
+              "type": "kendo-ui-mobile:field",
+              "name": "customerName",
+              "title": "Name",
+              "inputType": "text"
+            }
+          ],
+          "name": "formViewCustModel",
+          "submitButton": "Confirm",
+          "cancelButton": "Cancel"
+        }
+      ],
+      "title": "Customer detail",
+      "addToNavigation": false
     }
   ],
   "dataProviders": [

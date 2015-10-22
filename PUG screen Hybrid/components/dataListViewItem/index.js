@@ -34,7 +34,20 @@ app.dataListViewItem = kendo.observable({
         dataListViewItemModel = kendo.observable({
             dataSource: dataSource,
             dataSourceOptions: dataSourceOptions,
-            jsdoOptions: jsdoOptions
+            jsdoOptions: jsdoOptions,
+            itemClick: function(e) {
+                app.mobileApp.navigate('#components/dataListViewItem/details.html?uid=' + e.dataItem.uid);
+            },
+            detailsShow: function(e) {
+                var item = e.view.params.uid,
+                    dataSource = dataListViewItemModel.get('dataSource'),
+                    itemModel = dataSource.getByUid(item);
+                if (!itemModel.ItemName) {
+                    itemModel.ItemName = String.fromCharCode(160);
+                }
+                dataListViewItemModel.set('currentItem', itemModel);
+            },
+            currentItem: null
         });
 
     parent.set('dataListViewItemModel', dataListViewItemModel);
