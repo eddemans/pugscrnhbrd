@@ -24,8 +24,8 @@ app.dataListViewCust = kendo.observable({
                             field: 'Name',
                             defaultValue: ''
                         },
-                        'SalesRep': {
-                            field: 'SalesRep',
+                        'City': {
+                            field: 'City',
                             defaultValue: ''
                         },
                     }
@@ -71,6 +71,12 @@ app.dataListViewCust = kendo.observable({
 })(app.dataListViewCust);
 
 // START_CUSTOM_CODE_dataListViewCustModel
+
+/* I have added the following 2 lines from the link you sent */
+dataSource.fetch(function() {
+    dataSource.sync();
+});
+
 // you can handle the beforeFill / afterFill events here. For example:
 /*
 app.dataListViewCust.dataListViewCustModel.jsdoOptions.events = {
