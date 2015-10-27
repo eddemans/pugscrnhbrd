@@ -20,7 +20,7 @@
           "collection": "Customer",
           "iconField": false,
           "headerField": "Name",
-          "subHeaderField": "City",
+          "subHeaderField": "SalesRep",
           "masterDetails": true,
           "detailHeaderField": "Name",
           "detailSubHeaderField": "EmailAddress",
