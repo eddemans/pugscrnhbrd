@@ -24,8 +24,8 @@ app.dataListViewCust = kendo.observable({
                             field: 'Name',
                             defaultValue: ''
                         },
-                        'City': {
-                            field: 'City',
+                        'SalesRep': {
+                            field: 'SalesRep',
                             defaultValue: ''
                         },
                     }
@@ -35,7 +35,6 @@ app.dataListViewCust = kendo.observable({
         dataSource = new kendo.data.DataSource({
             pageSize: 50
         }),
- 
         dataListViewCustModel = kendo.observable({
             dataSource: dataSource,
             dataSourceOptions: dataSourceOptions,
@@ -43,7 +42,6 @@ app.dataListViewCust = kendo.observable({
             itemClick: function(e) {
                 app.mobileApp.navigate('#components/dataListViewCust/details.html?uid=' + e.dataItem.uid);
             },
-  
             detailsShow: function(e) {
                 var item = e.view.params.uid,
                     dataSource = dataListViewCustModel.get('dataSource'),
@@ -53,35 +51,6 @@ app.dataListViewCust = kendo.observable({
                 }
                 dataListViewCustModel.set('currentItem', itemModel);
             },
-                        /* MAS */
-        submit :  function(e) {
-            console.log("submit");
-            var jsdo = dataListViewCustModel.dataSource.transport.jsdo;
-            var jsrow = jsdo.findById(dataListViewCustModel.currentItem._id);
-             var afterUpdateFn;
-                jsrow.assign(dataListViewCustModel.currentItem);
-           
-            afterUpdateFn = function(jsdo, record, success, request) {
-                /* unsubscribe so this fn doesn't execute for some other event */              
-                jsdo.unsubscribe('afterUpdate', afterUpdateFn);
-               
-                if (success === true) {
-                app.mobileApp.navigate('#:back');
-                  
-                }
-                else {
-                    cError = "Update Error: " + dataListViewCustModel.normalizeError(request, record);
-                    app.showError(cError);
-                    console.log(cError);
-                }
-           };
-                       jsdo.subscribe('afterUpdate', afterUpdateFn);
- 
-            jsdo.saveChanges();          
-        },
-        cancel : function(e) {console.log("cancel")},
-        /* end MAS */
- 
             currentItem: null
         });
 

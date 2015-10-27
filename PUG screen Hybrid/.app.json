@@ -6,8 +6,7 @@
       "name": "homeView",
       "components": [],
       "title": "Home View",
-      "addToNavigation": true,
-      "icon": "home"
+      "addToNavigation": false
     },
     {
       "type": "kendo-ui-mobile:view",
@@ -23,8 +22,6 @@
           "subHeaderField": "SalesRep",
           "masterDetails": true,
           "detailHeaderField": "Name",
-          "detailSubHeaderField": "EmailAddress",
-          "detailDescriptionField": "Comments",
           "pullToRefresh": true,
           "endlessScroll": false
         }
@@ -123,7 +120,7 @@
   ],
   "name": "kendoUiMobileApp",
   "navigation": "tabstrip",
-  "view": "homeView",
+  "view": "dataListViewCust",
   "transition": "slide",
   "skin": "flat"
 }
