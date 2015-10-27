@@ -13,7 +13,19 @@
     <p data-bind="text: currentItem.Address2"></p>
     <p data-bind="text: currentItem.Address2"></p>
     <p data-bind="text: currentItem.PostalCode"></p>
-    <input data-bind="value: currentItem.City"></input>
+<!-- Moving to another Observable    <input data-bind="value: currentItem.City"></input> -->
 
     <!-- END_CUSTOM_CODE_dataListViewCustModel -->
+
+<!-- Adding MAS -->
+
+        <form>
+ <input data-bind="value: currentItem.City"></input> 
+
+ <div class="button-group">
+                <a data-role="button" data-bind="events: { click: cancel }">Cancel</a>
+                <a class="primary" data-role="button" data-bind="events: { click: submit }">Confirm</a>
+            </div>
+        </form>
+
 </div>
