@@ -1,0 +1,38 @@
+<div data-role="view" data-title="Details" data-model="app.dataListViewOrd.dataListViewOrdModel" data-bind="events: { show: detailsShow }">
+    <header data-role="header">
+        <div data-role="navbar" class="header-text">
+            <a data-role="backbutton" data-align="left">Back</a>
+            <span data-bind="text: currentItem.OrderNum" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; text-align: center; display: block; margin-left: 70px; margin-right: 70px;"></span>
+        </div>
+    </header>
+
+
+    <!-- START_CUSTOM_CODE_dataListViewOrdModel -->
+    <form id="Sportsform">
+        <div style="display:block; width:90%; margin-left:auto; margin-right:auto;">
+            <div>
+                <div style="text-align:left; width:100px; float:left;">OrderNum</div>
+                <div>
+                    <input type="text" data-bind="value: currentItem.OrderNum"></input>
+                </div>
+            </div>
+            <div>
+                <div style="text-align:left; width:100px; float:left;">Salesrep</div>
+                <div>
+                    <input type="text" data-bind="value: currentItem.SalesRep"></input>
+                </div>
+            </div>
+            <div>
+                <div style="text-align:left; width:100px; float:left;">Promised</div>
+                <div>
+                    <input type="email" data-bind="value: currentItem.PromiseDate"></input>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <a data-role="backbutton">Cancel</a>
+                <a class="primary" data-role="button" data-bind="events: { click: submit }">Confirm</a>
+            </div>
+    </form>
+    <!-- END_CUSTOM_CODE_dataListViewOrdModel -->
+    </div>
