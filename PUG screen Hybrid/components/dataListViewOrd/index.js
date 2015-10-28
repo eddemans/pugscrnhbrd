@@ -81,6 +81,10 @@ app.dataListViewOrd = kendo.observable({
         },
         cancel : function(e) {console.log("cancel")},
         /* end MAS */
+			
+		/* Ed */
+		selectCust : function(e) {console.log("selectCust")},
+		/* End Ed */
  
             currentItem: null
         });
