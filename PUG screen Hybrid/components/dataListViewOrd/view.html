@@ -1,7 +1,16 @@
 <div data-role="view" data-title="Order" data-layout="main" data-model="app.dataListViewOrd" data-show="app.dataListViewOrd.onShow" data-after-show="app.dataListViewOrd.afterShow">
     <!-- START_CUSTOM_CODE_dataListViewOrd -->
+	
+	<!-- Ed -->
+	<div style="display:block; width:250px; margin-left:auto; margin-right:auto;">
+		<input type="text" readonly = "readonly" data-bind="value: currentOrder.CustNum"></input>
+		<!-- I want CustName but this has yet to be added to the REST service! -->
+		<a class="primary" data-role="button" data-bind="events: { click: selectCust }" data-align="right" data-icon="search"></a>
+	</div>
+	<!-- Ed -->
+
     <!-- END_CUSTOM_CODE_dataListViewOrd -->
-    <ul data-role="listview" data-style="inset" data-template="dataListViewOrdModelTemplate" data-bind="{ source: dataListViewOrdModel.dataSource}" data-pull-to-refresh="false" data-endless-scroll="false">
+    <ul data-role="listview" data-style="inset" data-template="dataListViewOrdModelTemplate" data-bind="{ source: dataListViewOrdModel.dataSource, events: {click: dataListViewOrdModel.itemClick}}" data-pull-to-refresh="false" data-endless-scroll="false">
     </ul>
     <!-- START_CUSTOM_CODE_dataListViewOrdModel -->
     <!-- END_CUSTOM_CODE_dataListViewOrdModel -->
