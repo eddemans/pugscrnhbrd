@@ -6,26 +6,51 @@
         </div>
     </header>
 
-    <h3 data-bind="text: currentItem.EmailAddress"></h3>
-    <p data-bind="text: currentItem.Comments"></p>
 
     <!-- START_CUSTOM_CODE_dataListViewCustModel -->
-    <p data-bind="text: currentItem.Address2"></p>
-    <p data-bind="text: currentItem.Address2"></p>
-    <p data-bind="text: currentItem.PostalCode"></p>
-<!-- Moving to another Observable    <input data-bind="value: currentItem.City"></input> -->
+    <form id="Sportsform">
+        <div style="display:block; width:90%; margin-left:auto; margin-right:auto;">
+            <div>
+                <div style="text-align:left; width:100px; float:left;">Name</div>
+                <div>
+                    <input type="text" data-bind="value: currentItem.Name"></input>
+                </div>
+            </div>
+            <div>
+                <div style="text-align:left; width:100px; float:left;">Contact</div>
+                <div>
+                    <input type="text" data-bind="value: currentItem.Contact"></input>
+                </div>
+            </div>
+            <div>
+                <div style="text-align:left; width:100px; float:left;">EmailAddress</div>
+                <div>
+                    <input type="email" data-bind="value: currentItem.EmailAddress"></input>
+                </div>
+            </div>
+            <div>
+                <div style="text-align:left; width:100px; float:left;">City</div>
+                <div>
+                    <input type="text" data-bind="value: currentItem.City"></input>
+                </div>
+            </div>
+            <div>
+                <div style="text-align:left; width:100px; float:left;">CreditLimit</div>
+                <div>
+                    <input type="number" data-bind="value: currentItem.CreditLimit"></input>
+                </div>
+            </div>
+            <div>
+                <div style="text-align:left; width:100px; float:left;">Comments</div>
+                <div>
+                    <textarea name="Comments" form="Sportsform" data-bind="value: currentItem.Comments"></textarea>
+                </div>
+            </div>
 
-    <!-- END_CUSTOM_CODE_dataListViewCustModel -->
-
-<!-- Adding MAS -->
-
-        <form>
- <input data-bind="value: currentItem.City"></input> 
-
- <div class="button-group">
-                <a data-role="button" data-bind="events: { click: cancel }">Cancel</a>
+            <div class="button-group">
+                <a data-role="backbutton">Cancel</a>
                 <a class="primary" data-role="button" data-bind="events: { click: submit }">Confirm</a>
             </div>
-        </form>
-
-</div>
+    </form>
+    <!-- END_CUSTOM_CODE_dataListViewCustModel -->
+    </div>
