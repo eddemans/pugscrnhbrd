@@ -10,5 +10,46 @@
     <p data-bind="text: currentItem.CatDescription"></p>
 
     <!-- START_CUSTOM_CODE_dataListViewItemModel -->
+	<form id="Sportsform">
+	<div style="display:block; width:90%; margin-left:auto; margin-right:auto;">
+            <div>
+                <div style="text-align:left; width:100px; float:left;">Name</div>
+                <div>
+                    <input type="text" readonly="" data-bind="value: currentItem.ItemName"></input>
+                </div>
+            </div>
+            <div>
+                <div style="text-align:left; width:100px; float:left;">Description</div>
+                <div>
+                    <textarea name="Comments" readonly="" form="Sportsform" data-bind="value: currentItem.CatDescription"></textarea>
+                </div>
+            </div>
+            <div>
+                <div style="text-align:left; width:100px; float:left;">Price</div>
+                <div>
+                    <input type="text" readonly="" data-bind="value: currentItem.Price"></input>
+                </div>
+            </div>
+            <div>
+                <div style="text-align:left; width:100px; float:left;">Weight</div>
+                <div>
+                    <input type="text" readonly="" data-bind="value: currentItem.Weight"></input>
+                </div>
+            </div>
+            <div>
+                <div style="text-align:left; width:100px; float:left;">Category1</div>
+                <div>
+                    <input type="text" readonly="" data-bind="value: currentItem.Category1"></input>
+                </div>
+            </div>
+            <div>
+                <div style="text-align:left; width:100px; float:left;">Category2</div>
+                <div>
+                    <input type="text" readonly="" data-bind="value: currentItem.Category2"></input>
+                </div>
+            </div>
+	</div>
+	</form>
+
     <!-- END_CUSTOM_CODE_dataListViewItemModel -->
 </div>
