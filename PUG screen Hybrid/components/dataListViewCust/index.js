@@ -138,7 +138,7 @@ app.dataListViewCust = kendo.observable({
                                        app.mobileApp.navigate('#:back');
                         }
                         else {
-                            cError = "Delete Error: " + dataListViewCustModel.normalizeError(request); 
+                           var cError = "Delete Error: " + dataListViewCustModel.normalizeError(request); 
                             alert(cError);
                             console.log(cError);
                         }
@@ -165,7 +165,7 @@ app.dataListViewCust = kendo.observable({
 
                     }
                     else {
-                        cError = "Update Error: " + dataListViewCustModel.normalizeError(request);
+                       var cError = "Update Error: " + dataListViewCustModel.normalizeError(request);
                         alert(cError);
                         console.log(cError);
                     }
