@@ -2,55 +2,72 @@
     <header data-role="header">
         <div data-role="navbar" class="header-text">
             <a data-role="backbutton" data-align="left">Back</a>
+            
             <span data-bind="text: currentItem.Name" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; text-align: center; display: block; margin-left: 70px; margin-right: 70px;"></span>
         </div>
     </header>
 
 
     <!-- START_CUSTOM_CODE_dataListViewCustModel -->
-    <form id="Sportsform">
-        <div style="display:block; width:90%; margin-left:auto; margin-right:auto;">
-            <div>
-                <div style="text-align:left; width:100px; float:left;">Name</div>
-                <div>
-                    <input type="text" data-bind="value: currentItem.Name"></input>
-                </div>
-            </div>
-            <div>
-                <div style="text-align:left; width:100px; float:left;">Contact</div>
-                <div>
-                    <input type="text" data-bind="value: currentItem.Contact"></input>
-                </div>
-            </div>
-            <div>
-                <div style="text-align:left; width:100px; float:left;">EmailAddress</div>
-                <div>
-                    <input type="email" data-bind="value: currentItem.EmailAddress"></input>
-                </div>
-            </div>
-            <div>
-                <div style="text-align:left; width:100px; float:left;">City</div>
-                <div>
-                    <input type="text" data-bind="value: currentItem.City"></input>
-                </div>
-            </div>
-            <div>
-                <div style="text-align:left; width:100px; float:left;">CreditLimit</div>
-                <div>
-                    <input type="number" data-bind="value: currentItem.CreditLimit"></input>
-                </div>
-            </div>
-            <div>
-                <div style="text-align:left; width:100px; float:left;">Comments</div>
-                <div>
-                    <textarea name="Comments" form="Sportsform" data-bind="value: currentItem.Comments"></textarea>
-                </div>
+        <ul class="addNewCustomerWrapper" data-role="listview" data-style="inset">
+            <li>
+                <label>Name
+                     <input type="text" data-bind="enabled: isUpdated, value: currentItem.Name"></input>
+                </label>
+        </li>
+<li>
+               <label>Contact
+                     <input type="text" data-bind="enabled: isUpdated,value: currentItem.Contact"></input>
+                </label>
+        </li>
+<li>
+
+               <label>Email
+                     <input type="email" data-bind="enabled: isUpdated,value: currentItem.Email"></input>
+                </label>
+         </li>
+<li>
+              <label>City
+                     <input type="text" data-bind="enabled: isUpdated,value: currentItem.City"></input>
+                </label>
+            </li>
+<li>
+              <label>Credit Limit
+                     <input type="text" data-bind="enabled: isUpdated,value: currentItem.CreditLimit"></input>
+                </label>
+            </li>
+<li>
+              <label>Comments 
+                      <textarea name="Comments" form="Sportsform" data-bind="enabled: isUpdated,value: currentItem.Comments"></textarea>
+                </label>
+            </li>
+        </ul>
+            <div class="button-group" data-bind="visible: showEditDelete">
+               <!-- <a  data-role="button" data-bind="events: { click: delete }">Delete</a>-->
+                 <a id="deleteButton" data-role="button" data-rel="modalview" href="#modalview-confirm">Delete</a>
+               <a  class="primary" data-role="button" data-bind="events: { click: edit }">Edit</a>
             </div>
 
-            <div class="button-group">
-                <a data-role="backbutton">Cancel</a>
-                <a class="primary" data-role="button" data-bind="events: { click: submit }">Confirm</a>
+            <div class="button-group" data-bind="visible:isUpdated">
+                <a data-role="button" data-bind="events:{click:cancel}">Cancel</a>
+                <a class="primary" data-role="button" data-bind="events: { click: submit }">Save</a>
             </div>
-    </form>
+      
+<div data-role="modalview" id="modalview-confirm" style="width: 90%;">
+    <div data-role="header">
+        <div data-role="navbar">
+            <span>Confirm Delete</span>
+        </div>
+    </div>
+    <p>Are you sure you?</p>
+    <div data-role="footer">
+        <div data-role="navbar">
+            <a data-bind="events:{click:cancelDelete}" data-role="button" data-align="left">Cancel</a>
+            <a data-bind="events:{click:delete}"     data-role="button" data-align="right">Delete</a>
+        </div>
+    </div>
+</div>
+
+
     <!-- END_CUSTOM_CODE_dataListViewCustModel -->
     </div>

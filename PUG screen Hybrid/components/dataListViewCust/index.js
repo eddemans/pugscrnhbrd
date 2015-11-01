@@ -2,8 +2,13 @@
 
 app.dataListViewCust = kendo.observable({
     onShow: function() {},
-    afterShow: function() {}
+    afterShow: function() {},
+    isUpdated:false,
+    showEditDelete:true
+    
 });
+
+
 
 // START_CUSTOM_CODE_dataListViewCust
 // END_CUSTOM_CODE_dataListViewCust
@@ -35,7 +40,49 @@ app.dataListViewCust = kendo.observable({
         dataSource = new kendo.data.DataSource({
             pageSize: 50
         }),
+        addCustModel = kendo.observable({
+            dataSource:dataSource,
+            dataSourceOptions:dataSourceOptions,
+            jsdoOptions:jsdoOptions,
+            addItem:null,
+            addShow:function(e){
+                 var jsdo = dataListViewCustModel.dataSource.transport.jsdo;
+                 var jsrow = jsdo.add();
+                
+                  addCustModel.set('addItem', jsrow.data);
+            },
+             add :function(e){
+              console.log("add");  
+                var jsdo = dataListViewCustModel.dataSource.transport.jsdo;
+                
+                 var jsrow = jsdo.add(addCustModel.addItem);
+                 jsdo.subscribe('AfterSaveChanges', function callback(jsdo,success,request) {
+                       jsdo.unsubscribe('AfterSaveChanges', callback, jsdo);
+						var data;
+                        if (success) {
+                   			  if (request.batch 
+                                     && request.batch.operations instanceof Array 
+                                     && request.batch.operations.length == 1) {
+                                     data = request.batch.operations[0].jsrecord.data;
+                                }
+                             app.mobileApp.navigate('#:back');
+                        }
+                        else {
+                            cError = "Created Error: " + dataListViewCustModel.normalizeError(request, record); 
+                            app.showError(cError);
+                            console.log(cError);
+                        }                                        
+                                                                       
+                   },jsdo);
+               	   jsdo.saveChanges();  	
+                
+          
+            
+        }
+        }),
+
         dataListViewCustModel = kendo.observable({
+            addRecord: null,
             dataSource: dataSource,
             dataSourceOptions: dataSourceOptions,
             jsdoOptions: jsdoOptions,
@@ -51,10 +98,76 @@ app.dataListViewCust = kendo.observable({
                 }
                 dataListViewCustModel.set('currentItem', itemModel);
             },
-            currentItem: null
+            currentItem: null,
+            edit: function() {
+                app.dataListViewCust.set('isUpdated',true);
+                app.dataListViewCust.set('showEditDelete',false); 	
+            },
+            cancel: function() {
+                app.dataListViewCust.set('isUpdated',false);
+                app.dataListViewCust.set('showEditDelete',true); 	
+            },
+            cancelDelete :function(){
+                 $("#modalview-confirm").kendoMobileModalView("close");
+            },
+
+           
+            delete: function(e){
+                this.cancelDelete();
+                    var jsdo = dataListViewCustModel.dataSource.transport.jsdo;
+                 var jsrow = jsdo.findById(dataListViewCustModel.currentItem._id);
+                var afterDeleteFn;
+                if(jsrow) {
+                    jsrow.remove();
+
+                    afterDeleteFn = function(jsdo, record, success, request) {
+                        /* unsubscribe so this fn doesn't execute for some other event */               
+                        jsdo.unsubscribe('afterDelete', afterDeleteFn);
+
+                        if (success === true) {
+                                       app.mobileApp.navigate('#:back');
+                        }
+                        else {
+                            cError = "Delete Error: " + dataListViewCustModel.normalizeError(request, record); 
+                            app.showError(cError);
+                            console.log(cError);
+                        }
+           			};
+                
+                   jsdo.subscribe('afterDelete', afterDeleteFn);
+               	   jsdo.saveChanges();  	
+                }
+            },
+            submit :  function(e) {
+                console.log("submit");
+                var jsdo = dataListViewCustModel.dataSource.transport.jsdo;
+                var jsrow = jsdo.findById(dataListViewCustModel.currentItem._id);
+                var afterUpdateFn;
+
+          
+                jsrow.assign(dataListViewCustModel.currentItem);
+                afterUpdateFn = function(jsdo, record, success, request) {
+                    /* unsubscribe so this fn doesn't execute for some other event */              
+                    jsdo.unsubscribe('afterUpdate', afterUpdateFn);
+
+                    if (success === true) {
+                    app.mobileApp.navigate('#:back');
+
+                    }
+                    else {
+                        cError = "Update Error: " + dataListViewCustModel.normalizeError(request, record);
+                        app.showError(cError);
+                        console.log(cError);
+                    }
+          		 };
+               jsdo.subscribe('afterUpdate', afterUpdateFn);
+
+               jsdo.saveChanges();          
+       		 }
         });
 
     parent.set('dataListViewCustModel', dataListViewCustModel);
+    parent.set('addCustModel',addCustModel);
     parent.set('onShow', function() {
         dataProvider.loadCatalogs().then(function _catalogsLoaded() {
             var jsdoOptions = dataListViewCustModel.get('jsdoOptions').toJSON(),
@@ -72,10 +185,7 @@ app.dataListViewCust = kendo.observable({
 
 // START_CUSTOM_CODE_dataListViewCustModel
 
-/* I have added the following 2 lines from the link you sent */
-dataSource.fetch(function() {
-    dataSource.sync();
-});
+
 
 // you can handle the beforeFill / afterFill events here. For example:
 /*

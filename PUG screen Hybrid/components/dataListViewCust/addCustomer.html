@@ -1,0 +1,57 @@
+<div data-role="view" data-title="Add Customer" data-model="app.dataListViewCust.addCustModel" data-bind="events: { show: addShow }">
+    <header data-role="header">
+        <div data-role="navbar" class="header-text">
+            <a data-role="backbutton" data-align="left">Back</a>
+            
+        </div>
+    </header>
+    
+ 
+    <!-- START_CUSTOM_CODE_dataListViewCustModel -->
+        
+        <ul class="addNewCustomerWrapper" data-role="listview" data-style="inset">
+            <li>
+                <label>Name
+                     <input type="text" data-bind="value: addItem.Name"></input>
+                </label>
+        </li>
+            <li>
+                <label>Sales Rep
+                     <input type="text" data-bind="value: addItem.SalesRep"></input>
+                </label>
+        </li>
+<li>
+               <label>Contact
+                     <input type="text" data-bind="value: addItem.Contact"></input>
+                </label>
+        </li>
+<li>
+
+               <label>Email
+                     <input type="email" data-bind="value: addItem.Email"></input>
+                </label>
+         </li>
+<li>
+              <label>City
+                     <input type="text" data-bind="value: addItem.City"></input>
+                </label>
+            </li>
+<li>
+              <label>Credit Limit
+                     <input type="number" data-bind="value: addItem.CreditLimit"></input>
+                </label>
+            </li>
+<li>
+              <label>Comments
+                      <textarea name="Comments" form="Sportsform" data-bind="value: addItem.Comments"></textarea>
+                </label>
+            </li>
+        </ul>
+
+
+            <div class="button-group">
+                <a data-role="backbutton">Cancel</a>
+                <a class="primary" data-role="button" data-bind="events: { click: add }">Confirm</a>
+</div>
+
+    </div>
