@@ -68,8 +68,8 @@ app.dataListViewCust = kendo.observable({
                              app.mobileApp.navigate('#:back');
                         }
                         else {
-                            cError = "Created Error: " + dataListViewCustModel.normalizeError(request, record); 
-                            app.showError(cError);
+                            var cError = "Created Error: " + dataListViewCustModel.normalizeError(request); 
+                            alert(cError);
                             console.log(cError);
                         }                                        
                                                                        
@@ -111,7 +111,17 @@ app.dataListViewCust = kendo.observable({
                  $("#modalview-confirm").kendoMobileModalView("close");
             },
 
-           
+            normalizeError: function(request){
+               var cerror ="";
+                
+               if( request.batch
+                  && request.batch.operations instanceof Array 
+                  && request.batch.operations.length > 0) {
+                       cerror = request.batch.operations[0].xhr.response;
+                   
+               }
+                return cerror;
+            },
             delete: function(e){
                 this.cancelDelete();
                     var jsdo = dataListViewCustModel.dataSource.transport.jsdo;
@@ -128,8 +138,8 @@ app.dataListViewCust = kendo.observable({
                                        app.mobileApp.navigate('#:back');
                         }
                         else {
-                            cError = "Delete Error: " + dataListViewCustModel.normalizeError(request, record); 
-                            app.showError(cError);
+                            cError = "Delete Error: " + dataListViewCustModel.normalizeError(request); 
+                            alert(cError);
                             console.log(cError);
                         }
            			};
@@ -155,8 +165,8 @@ app.dataListViewCust = kendo.observable({
 
                     }
                     else {
-                        cError = "Update Error: " + dataListViewCustModel.normalizeError(request, record);
-                        app.showError(cError);
+                        cError = "Update Error: " + dataListViewCustModel.normalizeError(request);
+                        alert(cError);
                         console.log(cError);
                     }
           		 };
