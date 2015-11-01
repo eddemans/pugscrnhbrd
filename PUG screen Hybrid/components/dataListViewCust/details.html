@@ -11,6 +11,11 @@
     <!-- START_CUSTOM_CODE_dataListViewCustModel -->
         <ul class="addNewCustomerWrapper" data-role="listview" data-style="inset">
             <li>
+                <label>Num
+                     <input type="number" data-bind="enabled: isUpdated, value: currentItem.CustNum"></input>
+                </label>
+        </li>
+            <li>
                 <label>Name
                      <input type="text" data-bind="enabled: isUpdated, value: currentItem.Name"></input>
                 </label>
