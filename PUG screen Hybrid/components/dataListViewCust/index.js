@@ -40,7 +40,7 @@ app.dataListViewCust = kendo.observable({
         dataSource = new kendo.data.DataSource({
             pageSize: 50
         }),
-        addCustModel = kendo.observable({
+addCustModel = kendo.observable({
             dataSource:dataSource,
             dataSourceOptions:dataSourceOptions,
             jsdoOptions:jsdoOptions,
@@ -48,39 +48,41 @@ app.dataListViewCust = kendo.observable({
             addShow:function(e){
                  var jsdo = dataListViewCustModel.dataSource.transport.jsdo;
                  var jsrow = jsdo.add();
-                
+               
                   addCustModel.set('addItem', jsrow.data);
             },
              add :function(e){
-              console.log("add");  
+              console.log("add"); 
                 var jsdo = dataListViewCustModel.dataSource.transport.jsdo;
-                
-                 var jsrow = jsdo.add(addCustModel.addItem);
+               
+                 var jsrow = jsdo.assign(addCustModel.addItem);
                  jsdo.subscribe('AfterSaveChanges', function callback(jsdo,success,request) {
                        jsdo.unsubscribe('AfterSaveChanges', callback, jsdo);
-						var data;
+                                                                                                var data;
                         if (success) {
-                   			  if (request.batch 
-                                     && request.batch.operations instanceof Array 
+                                                                  if (request.batch
+                                     && request.batch.operations instanceof Array
                                      && request.batch.operations.length == 1) {
                                      data = request.batch.operations[0].jsrecord.data;
                                 }
                              app.mobileApp.navigate('#:back');
                         }
                         else {
-                            var cError = "Created Error: " + dataListViewCustModel.normalizeError(request); 
+                            var cError = "Created Error: " + dataListViewCustModel.normalizeError(request);
+                          
+                            
                             alert(cError);
+                            jsdo.add(addCustModel.addItem);
                             console.log(cError);
-                        }                                        
+                        }                                       
                                                                        
                    },jsdo);
-               	   jsdo.saveChanges();  	
+                  jsdo.saveChanges();   
                 
           
             
         }
         }),
-
         dataListViewCustModel = kendo.observable({
             addRecord: null,
             dataSource: dataSource,
